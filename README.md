@@ -108,21 +108,44 @@ Financial services require two complementary risk systems: one that protects the
 
             - For XGBoost: scale_pos_weight = (#negatives / #positives)
 
-For sklearn LogisticRegression: class_weight='balanced' or pass weights manually.
+            - For sklearn LogisticRegression: class_weight='balanced' or pass weights manually.
 
-B — Resampling
+       B — Resampling
 
-SMOTE (synthetic minority oversampling) — good for tabular features but be careful with PCA features (may create unrealistic combos). Use only on training set after cross-val split.
+             - SMOTE (synthetic minority oversampling) — good for tabular features but be careful with PCA features (may create unrealistic combos). Use only on training set after cross-val split.
 
-Random undersampling of majority (paired with oversampling) — reduces training time.
+             - Random undersampling of majority (paired with oversampling) — reduces training time.
 
-C — Anomaly detection
+        C — Anomaly detection
 
-If positives are extremely rare, try IsolationForest, OneClassSVM, or autoencoder reconstruction error — treat fraud as anomalies.
+               - If positives are extremely rare, try IsolationForest, OneClassSVM, or autoencoder reconstruction error — treat fraud as anomalies.
 
-D — Cost-sensitive learning
+        D — Cost-sensitive learning
 
-Design a custom loss/cost matrix that penalizes FN more than FP and choose threshold accordingly.
+                - Design a custom loss/cost matrix that penalizes FN more than FP and choose threshold accordingly.
+      4) Baseline: Logistic Regression
+
+         - Fast, interpretable (coefs show direction), good baseline.
+         - Use class_weight='balanced' and solver='liblinear' or 'saga' for large data.
+        
+      5) Stronger model: XGBoost / LightGBM (recommended)
+
+         - Tree-based boosting handles non-linearities and interactions well.
+
+         - For imbalance use scale_pos_weight or pass weight array.
+
+      6) Validation strategy and model evaluation and threshlding
+      7) scalibility
+  C) C. Scalable / Big-Data Variants (PySpark)
+
+2. Deployment and streaming
+
+## Reporting & Dashboards
+
+ - Connect Power BI to MySQL tables (predictions, aggregated KPIs). Create views:
+ - Fraud Overview: daily fraud count, top SHAP features, recent alerts.
+ - Credit Risk Overview: score distribution, risk buckets, cohort default rates.
+ - Add drill-downs and a one-page executive summary.
   
  
   
