@@ -12,4 +12,9 @@ This repository contains an end-to-end implementation of a Credit & Fraud Risk A
 Financial services require two complementary risk systems: one that protects the business from fraudulent transactions (fast, transaction-level detection) and one that scores credit risk of customers (applicant-level decisions). This project demonstrates both systems, end-to-end, with a focus on scalability, interpretability, and production-readiness.
 
 ## Highlights / What you'll learn
-ghhh
+- How to process anonymized high-dimensional transactional data (PCA features) and still build performant models.
+- How to build credit scoring models from applicant-level features and interpret them for business stakeholders.
+- How to use Hive + PySpark for distributed preprocessing and Parquet outputs for performance.
+- How to handle class imbalance (SMOTE, scale_pos_weight, anomaly detection).
+- How to deploy models as microservices (FastAPI) and simulate streaming (Kafka + Spark Structured Streaming).
+- How to present results with Power BI and integrate SHAP explanations into reports.
