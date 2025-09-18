@@ -18,3 +18,25 @@ Financial services require two complementary risk systems: one that protects the
 - How to handle class imbalance (SMOTE, scale_pos_weight, anomaly detection).
 - How to deploy models as microservices (FastAPI) and simulate streaming (Kafka + Spark Structured Streaming).
 - How to present results with Power BI and integrate SHAP explanations into reports.
+
+## Repository structure
+/project-root
+├─ data/        # raw CSVs (creditcard.csv, loans.csv)
+├─ notebooks/
+│ ├─ 01_eda_fraud.ipynb
+│ ├─ 02_eda_loans.ipynb
+│ ├─ 03_modeling_fraud.ipynb
+│ └─ 04_modeling_loans.ipynb
+├─ spark_jobs/
+│ ├─ fraud_preprocess.py
+│ └─ loans_preprocess.py
+├─ models/
+│ ├─ fraud_xgb.pkl
+│ └─ loans_xgb.pkl
+├─ deploy/
+│ ├─ fraud_api.py
+│ └─ loans_api.py
+├─ dashboards/
+│ └─ powerbi_files.pbix
+├─ requirements.txt
+└─ README.md
