@@ -1,0 +1,9 @@
+# Ignore model binaries
+*.pkl
+
+# Ignore Power BI large files
+*.pbix
+
+# Ignore temp files
+*.log
+*.tmp
