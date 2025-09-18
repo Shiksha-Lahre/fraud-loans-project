@@ -40,3 +40,9 @@ Financial services require two complementary risk systems: one that protects the
 │ └─ powerbi_files.pbix
 ├─ requirements.txt
 └─ README.md
+
+## Datasets
+
+- Fraud: creditcard.csv (Kaggle - European card transactions) — columns: Time, V1, V2,..,V28, Amount, Class. The dataset is PCA-anonymized; the only interpretable features are Time and Amount. 
+
+- Loans: loan_data.csv (open dataset) — example columns: person_age, person_gender, person_education, person_income, person_emp_exp, person_home_ownership, loan_amount, loan_intent, loan_int_rate, loan_percent_income, cb_person_cred_hist_length, credit_score, previous_loan_defaults_on_file, loan_status.
