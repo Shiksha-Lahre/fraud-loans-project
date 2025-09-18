@@ -91,7 +91,38 @@ Financial services require two complementary risk systems: one that protects the
       Secondary metrics: Precision@k, Recall@k, F1 at chosen threshold, False Positive Rate, business-cost metric (cost of missed fraud vs cost of false alarm).
       Use time-based validation if possible (train on earlier transactions → test on later) to avoid leakage.
 
-     2) 
+     2) Preprocessing 
+
+       Cast numeric columns to float/double.
+       Time → derive hour_of_day or is_night flags.
+       Amount → log_amount = np.log1p(Amount) and optionally amount_bin.
+       V1..V28 → verify scaling (they usually already have mean~0). If not, StandardScaler.
+       Remove duplicates, handle missing values (if any).
+       Split into X (features) and y (Class).
+   
+      3) Handling class imbalance (practical options)
+
+        Because fraud << legit:
+
+       A — Class weight / scale_pos_weight (simple, effective)
+
+            - For XGBoost: scale_pos_weight = (#negatives / #positives)
+
+For sklearn LogisticRegression: class_weight='balanced' or pass weights manually.
+
+B — Resampling
+
+SMOTE (synthetic minority oversampling) — good for tabular features but be careful with PCA features (may create unrealistic combos). Use only on training set after cross-val split.
+
+Random undersampling of majority (paired with oversampling) — reduces training time.
+
+C — Anomaly detection
+
+If positives are extremely rare, try IsolationForest, OneClassSVM, or autoencoder reconstruction error — treat fraud as anomalies.
+
+D — Cost-sensitive learning
+
+Design a custom loss/cost matrix that penalizes FN more than FP and choose threshold accordingly.
   
  
   
